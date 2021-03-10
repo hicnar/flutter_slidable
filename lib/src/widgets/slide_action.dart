@@ -54,6 +54,7 @@ abstract class ClosableSlideAction extends StatelessWidget {
       Material(
         color: color,
         child: InkWell(
+          customBorder: CircleBorder(),
           onTap: !closeOnTap ? onTap : () => _handleCloseAfterTap(context),
           child: buildAction(context),
         ),
