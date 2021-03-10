@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/src/widgets/slidable.dart';
@@ -39,7 +41,17 @@ abstract class ClosableSlideAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: Material(
+      child: defaultTargetPlatform == TargetPlatform.iOS ?
+      Container(
+        child: CupertinoButton(
+          padding: EdgeInsets.all(8.0),
+          minSize: 25,
+          color: color,
+          onPressed: !closeOnTap ? onTap : () => _handleCloseAfterTap(context),
+          child: buildAction(context),
+        )
+      ) :
+      Material(
         color: color,
         child: InkWell(
           onTap: !closeOnTap ? onTap : () => _handleCloseAfterTap(context),
