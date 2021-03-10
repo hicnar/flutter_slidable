@@ -40,6 +40,7 @@ abstract class ClosableSlideAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GestureDetector(
       child: defaultTargetPlatform == TargetPlatform.iOS ?
       Container(
@@ -51,9 +52,14 @@ abstract class ClosableSlideAction extends StatelessWidget {
           child: buildAction(context),
         )
       ) :
-      Material(
-        color: color,
-        child: InkWell(
+      Semantics(
+        button: true,
+        enabled: onTap != null,
+        child: InkResponse(
+          highlightColor: theme.highlightColor,
+          focusColor: theme.focusColor,
+          hoverColor: theme.hoverColor,
+          splashColor: Colors.transparent,
           customBorder: CircleBorder(),
           onTap: !closeOnTap ? onTap : () => _handleCloseAfterTap(context),
           child: buildAction(context),
