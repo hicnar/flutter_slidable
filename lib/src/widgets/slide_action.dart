@@ -59,7 +59,7 @@ abstract class ClosableSlideAction extends StatelessWidget {
           highlightColor: theme.highlightColor,
           focusColor: theme.focusColor,
           hoverColor: theme.hoverColor,
-          splashColor: Colors.transparent,
+          splashColor: theme.splashColor,
           customBorder: CircleBorder(),
           onTap: !closeOnTap ? onTap : () => _handleCloseAfterTap(context),
           child: buildAction(context),
