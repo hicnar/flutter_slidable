@@ -47,6 +47,7 @@ abstract class ClosableSlideAction extends StatelessWidget {
         child: CupertinoButton(
           padding: EdgeInsets.all(8.0),
           minSize: 25,
+          pressedOpacity: onTap != null ? 0.4 : 1.0,
           color: color,
           onPressed: !closeOnTap ? onTap : () => _handleCloseAfterTap(context),
           child: buildAction(context),
