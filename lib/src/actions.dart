@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'slidable.dart';
@@ -94,21 +96,28 @@ class CustomSlidableAction extends StatelessWidget {
     return Expanded(
       flex: flex,
       child: SizedBox.expand(
-        child: OutlinedButton(
+        child: defaultTargetPlatform == TargetPlatform.android ? OutlinedButton(
           onPressed: () => _handleTap(context),
           style: OutlinedButton.styleFrom(
             padding: padding,
             backgroundColor: backgroundColor,
-            primary: effectiveForegroundColor,
-            onSurface: effectiveForegroundColor,
+            foregroundColor: effectiveForegroundColor,
+            disabledForegroundColor: effectiveForegroundColor,
             shape: RoundedRectangleBorder(
               borderRadius: borderRadius,
             ),
             side: BorderSide.none,
           ),
           child: child,
+        ) : CupertinoButton(
+          padding: const EdgeInsets.all(8),
+          minSize: 25,
+          pressedOpacity: onPressed != null ? 0.4 : 1.0,
+          // color: color,
+          onPressed: () => _handleTap(context),
+          child: child,
         ),
-      ),
+      )
     );
   }
 
