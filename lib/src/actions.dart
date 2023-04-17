@@ -96,7 +96,14 @@ class CustomSlidableAction extends StatelessWidget {
     return Expanded(
       flex: flex,
       child: SizedBox.expand(
-        child: defaultTargetPlatform == TargetPlatform.android ? OutlinedButton(
+        child: defaultTargetPlatform == TargetPlatform.iOS ? CupertinoButton(
+          padding: const EdgeInsets.all(8),
+          minSize: 25,
+          pressedOpacity: onPressed != null ? 0.4 : 1.0,
+          // color: color,
+          onPressed: () => _handleTap(context),
+          child: child,
+        ) : OutlinedButton(
           onPressed: () => _handleTap(context),
           style: OutlinedButton.styleFrom(
             padding: padding,
@@ -108,13 +115,6 @@ class CustomSlidableAction extends StatelessWidget {
             ),
             side: BorderSide.none,
           ),
-          child: child,
-        ) : CupertinoButton(
-          padding: const EdgeInsets.all(8),
-          minSize: 25,
-          pressedOpacity: onPressed != null ? 0.4 : 1.0,
-          // color: color,
-          onPressed: () => _handleTap(context),
           child: child,
         ),
       )
